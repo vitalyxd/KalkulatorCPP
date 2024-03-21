@@ -5,6 +5,14 @@
 #include <chrono>
 using namespace std;
 
+void ExitProgram() {
+
+	cout << "Program se gasi za par sekundi!\n";
+	this_thread::sleep_for(chrono::seconds(3));		// gasi program
+	exit(0);
+}
+
+
 int main() {
 
 	double prviBroj;
@@ -17,16 +25,14 @@ int main() {
 
 		cout << "Dobrodosli u moj kalkulator, ako zelite izaci iz programa upisite 'PREKID'\n";
 		cout << "Unesi prvi broj: ";
-		cin >> unosBroja;
+		cin >> unosBroja;	
 
 		if (unosBroja == "PREKID") {
 
-			cout << "Program se gasi za par sekundi!\n";
-			this_thread::sleep_for(chrono::seconds(3));
-			exit(0);
+			ExitProgram;	// zovemo funk za gasenje programa
 		}
 		else {
-			prviBroj = stod(unosBroja);
+			prviBroj = stod(unosBroja);		// prenosi vrijednost sa unosBroja na prviBroj
 		}
 
 
@@ -35,19 +41,15 @@ int main() {
 
 		if (unosPredznaka == "PREKID") {
 
-			cout << "Program se gasi za par sekundi!\n";
-			this_thread::sleep_for(chrono::seconds(3));
-			exit(0);
+			ExitProgram;
 		}
 
 		cout << "Unesi drugi broj: ";
 		cin >> unosBroja;
 
-		if (unosBroja == "PREKID") {
+		if (unosBroja == "PREKID") {	// ako je unesena string "PREKID" program se gasi obv
 
-			cout << "Program se gasi za par sekundi!";
-			this_thread::sleep_for(chrono::seconds(3));
-			exit(0);
+			ExitProgram;
 		}
 		else {
 			drugiBroj = stod(unosBroja);
@@ -66,7 +68,7 @@ int main() {
 			break;
 
 		case'*':
-			rezultat = prviBroj + drugiBroj;
+			rezultat = prviBroj * drugiBroj;
 			cout << "Umnozak iznosi " << rezultat << "\n";
 			break;
 
@@ -76,7 +78,7 @@ int main() {
 			break;
 
 		default:
-			cout << "Pogreska u racunanju, kalkulator se resetira";
+			cout << "Pogreska u racunanju, kalkulator se resetira\n";
 			continue;
 		}
 	}
